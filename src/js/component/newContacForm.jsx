@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router";
+import { Context } from "../store/appContext";
 
 export const NewContactForm = () => {
-    // useState dentro del componente
+
+    const {store, actions} = useContext(Context);
+
+    const navigate =useNavigate();
+
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
@@ -9,26 +15,18 @@ export const NewContactForm = () => {
         address: ''
     });
 
-    // Manejar cambios en los inputs
+   
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
 
-    // Manejar cancelar
-    const handleCancel = () => {
-        setFormData({
-            name: '',
-            phone: '',
-            email: '',
-            address: ''
-        });
-    };
+    const handleCancel = () => {navigate('/') };
 
-    // Manejar submit
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData);
+        actions.createContact(formData)
     };
 
     return (
