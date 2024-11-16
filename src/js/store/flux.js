@@ -61,15 +61,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 			deleteContact: async (id) => {
-					try {
-					const resp = await fetch(getStore().url+'/agendas/ivan/contacts/'+id, {
-						method: 'DELETE'
-					})
-					if (!resp.ok) throw new Error('Error while deleting');
-					getActions().getAgenda();
-				} catch (error) {
-					console.error(error);
-				}
+				try {
+				const resp = await fetch(getStore().url+'/agendas/ivan/contacts/'+id, {
+					method: 'DELETE'
+				})
+				if (!resp.ok) throw new Error('Error while deleting');
+				//si no hubieron errores, pedimos la lista actualizada de tareas
+				getActions().getAgenda();
+			} catch (error) {
+				console.error(error);
+			}
 			},
 		}
 	};
