@@ -1,6 +1,6 @@
 import React from "react";
 
-import { NewContactForm } from "../component/newContacForm";
+import { NewContactForm } from "../component/newContacForm.jsx";
 
 
 export const NewContact = () => {
