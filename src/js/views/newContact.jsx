@@ -1,13 +1,13 @@
 import React from "react";
 
-export const NewContact = () => {
+import { NewContactForm } from "../component/newContacForm";
 
-   //vista creacion, renderiza el componente de creacion de contacto
+
+export const NewContact = () => {
 
 
     return (
         <div className="container">
-           nuevo contacto
-        </div>
-    )
+           <NewContactForm />
+
 }
