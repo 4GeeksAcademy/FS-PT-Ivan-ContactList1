@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router";
 import { Context } from "../store/appContext";
 
 export const ContactCard = (props) =>{
@@ -9,6 +10,13 @@ export const ContactCard = (props) =>{
         actions.deleteContact(props.contactId)
     }
 
+    const handleEditCard = () =>{
+        let contact = store.contacts.filter(el=> el.id === props.contactId)[0]
+        actions.selectContact(contact)
+        navigate('/edit/'+props.contactId)
+    }
+
+
     return(
         <div className="card">
             <div className="d-flex">
@@ -18,6 +26,7 @@ export const ContactCard = (props) =>{
                     <p>phone: {props.phone}</p>
                     <p> email:{props.email}</p>
                     <p>address: {props.address}</p>
+                    <button onClick={handleEditCard} className="btn btn-warning">Edit</button>
                     <button onClick={handleDelete} className="btn btn-danger">Delete</button>
                 </div>
             </div>
