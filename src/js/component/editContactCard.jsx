@@ -26,6 +26,8 @@ const handleSubmit = e => {
     e.preventDefault();
     console.log(formData)
     actions.editContact(formData)
+
+    navigate('/')
 }
     return (
         <form className="card form-control" onSubmit={handleSubmit}>
