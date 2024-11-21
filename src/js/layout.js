@@ -9,6 +9,7 @@ import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 
 import { NewContact } from "./views/newContact.jsx";
+import {Edit} from "./views/editContact.jsx"
 
 
 //create your first component
@@ -26,7 +27,7 @@ const Layout = () => {
 						<Route path="/" element={<Home />} />
 
 						<Route path="/nuevo" element={<NewContact/>} />
-
+						<Route path="/edit/:id" element={<Edit />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
 					</Routes>
 					<Footer />
