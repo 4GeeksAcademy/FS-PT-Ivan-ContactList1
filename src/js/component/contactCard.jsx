@@ -4,6 +4,7 @@ import { Context } from "../store/appContext";
 
 export const ContactCard = (props) =>{
     const {store, actions} = useContext(Context);
+    const navigate = useNavigate();
 
     const handleDelete = () => {
         console.log("Deleting contact with ID:", props.contactId);

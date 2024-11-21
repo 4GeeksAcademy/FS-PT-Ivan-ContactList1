@@ -1,10 +1,16 @@
 import React, { useContext, useState } from "react";
+
 import { useNavigate } from "react-router";
+
 import { Context } from "../store/appContext";
 
+
+
 export const NewContactForm = () => {
-    const { store, actions } = useContext(Context);
-    const navigate = useNavigate();
+
+    const {store, actions} = useContext(Context);
+
+    const navigate =useNavigate();
 
     const [formData, setFormData] = useState({
         name: '',
@@ -13,29 +19,25 @@ export const NewContactForm = () => {
         address: ''
     });
 
+   
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleCancel = () => {
+    const handleCancel = () => {navigate('/') };
+    
+ 
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(formData);
+        actions.createContact(formData)
+
         navigate('/');
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        console.log(formData);
 
-        // Llamamos a la acción `createContact` y esperamos que complete.
-        const result = await actions.createContact(formData);
-
-        // Si el envío es exitoso, redirigimos.
-        if (result.success) {
-            navigate('/');
-        } else {
-            alert('Error al enviar los datos. Por favor, intente de nuevo.');
-        }
-    };
 
     return (
         <form className="card form-control" onSubmit={handleSubmit}>
@@ -75,7 +77,9 @@ export const NewContactForm = () => {
                 required
                 placeholder="address"
             />
+            
             <input className="btn btn-success" type="submit" value="enviar" />
+            
             <button className="btn btn-danger" type="button" onClick={handleCancel}>
                 cancel
             </button>
